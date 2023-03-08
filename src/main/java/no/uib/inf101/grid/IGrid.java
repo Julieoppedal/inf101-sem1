@@ -14,7 +14,7 @@ public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
   void set(CellPosition pos, E value);
   
   /**
-  * Gets the current value at the given coordinate.
+  * Gets the current value at the given coordinate. 
   * 
   * @param pos the position to get
   * @return the value stored at the position
