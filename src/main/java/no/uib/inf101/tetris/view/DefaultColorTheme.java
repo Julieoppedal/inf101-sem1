@@ -3,6 +3,7 @@ package no.uib.inf101.tetris.view;
 import java.awt.Color;
 
 public class DefaultColorTheme implements ColorTheme{
+    
 
     @Override
     public Color getCellColor(Character c) {
@@ -35,6 +36,16 @@ public class DefaultColorTheme implements ColorTheme{
     @Override
     public Color getBackgroundColor() {
         return null;
+    }
+
+    @Override
+    public Color getGameOverColor() {
+        return new Color(0, 0, 0, 128);
+    }
+
+    @Override
+    public Color getGameOverText() {
+        return Color.WHITE;
     }
     
     

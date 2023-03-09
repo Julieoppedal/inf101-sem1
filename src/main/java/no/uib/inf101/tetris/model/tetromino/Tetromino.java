@@ -14,7 +14,7 @@ public class Tetromino implements Iterable<GridCell<Character>> {
     private final boolean[][] shape;
     CellPosition pos;
 
-    private Tetromino(char symbol, boolean[][] shape, CellPosition pos) {
+    Tetromino(char symbol, boolean[][] shape, CellPosition pos) {
         this.symbol = symbol;
         this.shape = shape;
         this.pos = pos;
@@ -92,6 +92,21 @@ public class Tetromino implements Iterable<GridCell<Character>> {
         return new Tetromino(symbol, shape, top);
     }
 
+    public Tetromino rotate() {
+        int oldRows = shape.length;
+        int oldCols = shape[0].length;
+        boolean[][] newShape = new boolean[oldCols][oldRows];
+    
+        // roter matrisen
+        for (int r = 0; r < oldRows; r++) {
+            for (int c = 0; c < oldCols; c++) {
+                newShape[c][oldRows - 1 - r] = shape[r][c];
+            }
+        }
+    
+        return new Tetromino(symbol, newShape, pos);
+    }
+
     
 
     @Override
@@ -126,5 +141,6 @@ public class Tetromino implements Iterable<GridCell<Character>> {
         Tetromino tetromino = (Tetromino) obj;
         return tetromino.symbol == this.symbol && Arrays.deepEquals(tetromino.shape, this.shape) && tetromino.pos.equals(this.pos);
     }
+
 
 }

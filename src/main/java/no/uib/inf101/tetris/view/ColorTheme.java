@@ -10,5 +10,9 @@ public interface ColorTheme {
 
     Color getBackgroundColor();
 
+    Color getGameOverColor();
+
+    Color getGameOverText();
+
     
 }

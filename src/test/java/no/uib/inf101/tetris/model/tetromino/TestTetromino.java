@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -92,4 +93,28 @@ public class TestTetromino {
 
 
     }
+
+    @Test
+    public void testRotateT() {
+      boolean[][] initialShape = {
+        {false, true, false},
+        {true, true, true},
+        {false, false, false}
+      };
+      Tetromino tetro = new Tetromino('T', initialShape, new CellPosition(0, 0));
+    
+      // Roterer tetromino
+      tetro = tetro.rotate();
+    
+      // Sjekker rikitg fasong og posisjon
+      boolean[][] expectedShape = {
+        {false, true, false},
+        {false, true, true},
+        {false, true, false}
+      };
+      CellPosition expectedPos = new CellPosition(0, 0);
+      assertEquals(new Tetromino('T', expectedShape, expectedPos), tetro);
+    }
+    
+ 
 }

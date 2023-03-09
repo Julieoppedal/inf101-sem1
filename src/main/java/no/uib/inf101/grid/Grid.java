@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Grid<E> implements IGrid<E> {
-    private int rows;
+    protected int rows;
     private int cols;
     private List<List<E>> grid;
 
@@ -31,8 +31,6 @@ public class Grid<E> implements IGrid<E> {
         this(rows, cols, null);
 
     }
-
-
 
 
     @Override

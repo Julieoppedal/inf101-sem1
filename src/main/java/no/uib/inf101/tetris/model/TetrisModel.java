@@ -13,11 +13,13 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     private final TetrisBoard board;
     private final TetrominoFactory factory;
     private Tetromino fallingTile;
+    private GameState state;
 
     public TetrisModel(TetrisBoard board,TetrominoFactory factory) {
         this.board = board;
         this.factory = factory;
         this.fallingTile = factory.getNext().shiftedToTopCenterOf(board);
+        this.state = GameState.ACTIVE_GAME;
     }
 
     @Override
@@ -31,12 +33,12 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     }
 
     @Override
-    public Iterable<GridCell<Character>> getFallingTile() {
+    public Tetromino getFallingTile() {
         return fallingTile;
     }
 
     @Override
-    public Boolean moveTetromino(int deltaRow, int deltaCol) {
+    public boolean moveTetromino(int deltaRow, int deltaCol) {
         Tetromino shiftedTetromino = this.fallingTile.shiftedBy(deltaRow, deltaCol);
         if (isValidPosition(shiftedTetromino)) {
             this.fallingTile = shiftedTetromino;
@@ -45,7 +47,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return false;
     }
 
-    private Boolean isValidPosition(Tetromino shiftedTetromino) {
+    boolean isValidPosition(Tetromino shiftedTetromino) {
         for(GridCell<Character> tile : shiftedTetromino) {
             CellPosition tilePosition = tile.pos();
             if(!(board.positionIsOnGrid(tilePosition)) || board.get(tilePosition) != '-') {
@@ -55,6 +57,46 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return true;
     }
 
-    
+    @Override
+    public boolean rotateTetromino() {
+        Tetromino rotatedTetromino = this.fallingTile.rotate();
+        if (isValidPosition(rotatedTetromino)) {
+            this.fallingTile = rotatedTetromino;
+            return true;
+        }
+        return false;
+    }
 
-}
+    @Override
+    public boolean dropTetromino() {
+        Tetromino movedTetromino = this.fallingTile;
+        while (isValidPosition(movedTetromino.shiftedBy(1, 0))) {
+            movedTetromino = movedTetromino.shiftedBy(1, 0);
+        }
+        this.fallingTile = movedTetromino;
+        attachFallingTileToBoard();
+        getNextFallingTile();
+        return true;
+    }
+    
+    private void getNextFallingTile() {
+        Tetromino nextFallingTile = this.factory.getNext().shiftedToTopCenterOf(board);
+        if (!isValidPosition(nextFallingTile)) {
+            this.state = GameState.GAME_OVER;
+        } else {
+            this.fallingTile = nextFallingTile;
+        }
+    }
+    
+    private void attachFallingTileToBoard() {
+        for (GridCell<Character> cell : fallingTile) {
+            board.set(cell.pos(), cell.value());
+        }
+    }
+
+    @Override
+    public GameState getGameState() {
+        return this.state;
+    }
+   
+} 
