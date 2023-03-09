@@ -92,6 +92,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         for (GridCell<Character> cell : fallingTile) {
             board.set(cell.pos(), cell.value());
         }
+        board.removeFullRows();
     }
 
     @Override

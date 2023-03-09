@@ -17,7 +17,9 @@ public class TetrisBoard extends Grid<Character> {
             for (int j = 0; j < cols(); j++) {
                 sb.append(get(new CellPosition(i, j)));
             }
-            sb.append("\n");
+            if (i < rows() - 1) { // Sjekker om vi er på den siste raden
+                sb.append("\n");
+            }
         }
     
         return sb.toString();
