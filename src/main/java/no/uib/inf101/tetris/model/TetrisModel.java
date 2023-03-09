@@ -99,5 +99,11 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public GameState getGameState() {
         return this.state;
     }
-   
-} 
+
+    @Override
+    public int getTimeBetweenTicks() {
+        return 1000;
+    }   
+
+}
+

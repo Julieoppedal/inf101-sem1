@@ -12,6 +12,8 @@ public interface ControllableTetrisModel {
 
     GameState getGameState();
 
+    int getTimeBetweenTicks();
+
     
     
 }
