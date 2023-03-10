@@ -14,6 +14,8 @@ public interface ControllableTetrisModel {
 
     int getTimeBetweenTicks();
 
+    void clockTick();
+
     
     
 }

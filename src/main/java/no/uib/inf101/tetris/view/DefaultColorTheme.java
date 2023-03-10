@@ -8,10 +8,6 @@ public class DefaultColorTheme implements ColorTheme{
     @Override
     public Color getCellColor(Character c) {
         Color color = switch(c) {
-            case 'r' -> Color.RED;
-            case 'g' -> Color.GREEN;
-            case 'y' -> Color.YELLOW;
-            case 'b' -> Color.BLUE;
             case 'Z' -> Color.RED;
             case 'L' -> Color.GREEN;
             case 'O' -> Color.YELLOW;

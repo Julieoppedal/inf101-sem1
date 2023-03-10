@@ -103,7 +103,18 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     @Override
     public int getTimeBetweenTicks() {
         return 1000;
-    }   
+    }
+
+    @Override
+    public void clockTick() {
+        if (moveTetromino(1, 0)) {
+            // Tetrominoen kan flyttes nedover
+            return;
+        }
+        // Tetrominoen kan ikke flyttes nedover, limer den fast
+        attachFallingTileToBoard();
+        getNextFallingTile();
+    } 
 
 }
 

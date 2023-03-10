@@ -134,5 +134,40 @@ public class TestTetrisModel {
     assertNotNull(model.getFallingTile());
   }
 
+  @Test
+  void testClockTick() {
+      TetrisBoard board = new TetrisBoard(20, 10);
+      TetrominoFactory factory = new PatternedTetrominoFactory("I");
+      TetrisModel model = new TetrisModel(board, factory);
+      Tetromino initialTetromino = model.getFallingTile();
+  
+      // Test that the initial tetromino is in the expected position
+      List<CellPosition> expectedPositions = List.of(
+          new CellPosition(0, 3),
+          new CellPosition(0, 4),
+          new CellPosition(0, 5),
+          new CellPosition(0, 6)
+      );
+      List<CellPosition> actualPositions = new ArrayList<>();
+      for (GridCell<Character> cell : initialTetromino) {
+          actualPositions.add(cell.pos());
+      }
+      assertEquals(expectedPositions, actualPositions);
+  
+      // Move the tetromino down one row and test that it has moved
+      model.clockTick();
+      Tetromino movedTetromino = model.getFallingTile();
+      expectedPositions = List.of(
+          new CellPosition(1, 3),
+          new CellPosition(1, 4),
+          new CellPosition(1, 5),
+          new CellPosition(1, 6)
+      );
+      actualPositions = new ArrayList<>();
+      for (GridCell<Character> cell : movedTetromino) {
+          actualPositions.add(cell.pos());
+      }
+      assertEquals(expectedPositions, actualPositions);
+  }
 
 }
