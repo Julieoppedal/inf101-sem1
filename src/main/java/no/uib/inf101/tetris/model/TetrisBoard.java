@@ -28,7 +28,7 @@ public class TetrisBoard extends Grid<Character> {
 
     private boolean elementInRow(int rows, Character value) {
         for(GridCell<Character> gridCell: this) {
-            if (value == gridCell.value() && rows == gridCell.pos().row()) {
+            if (rows == gridCell.pos().row() && gridCell.value() == '-') {
                 return true;
             }
         }
@@ -46,6 +46,8 @@ public class TetrisBoard extends Grid<Character> {
             set(new CellPosition(newrow, x), get(new CellPosition(oldrow, x)));
         }
     }
+
+
 
     public int removeFullRows() {
         int count = 0;

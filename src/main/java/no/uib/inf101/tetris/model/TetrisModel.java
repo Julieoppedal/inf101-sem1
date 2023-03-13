@@ -12,7 +12,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     private final TetrisBoard board;
     private final TetrominoFactory factory;
-    private Tetromino fallingTile;
+    Tetromino fallingTile;
     private GameState state;
 
     public TetrisModel(TetrisBoard board,TetrominoFactory factory) {

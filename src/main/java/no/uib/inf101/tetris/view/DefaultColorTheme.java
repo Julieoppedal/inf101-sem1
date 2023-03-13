@@ -8,7 +8,7 @@ public class DefaultColorTheme implements ColorTheme{
     @Override
     public Color getCellColor(Character c) {
         Color color = switch(c) {
-            case 'Z' -> Color.RED;
+            case 'r' -> Color.RED;
             case 'L' -> Color.GREEN;
             case 'O' -> Color.YELLOW;
             case 'J' -> Color.BLUE;
@@ -16,7 +16,7 @@ public class DefaultColorTheme implements ColorTheme{
             case 'T' -> Color.MAGENTA;
             case 'S' -> Color.ORANGE;
             case 'w' -> Color.WHITE;
-            case 'p' -> Color.PINK;
+            case 'Z' -> Color.PINK;
             case '-' -> Color.BLACK;
             default -> throw new IllegalArgumentException(
                 "No available color for '" + c + "'");
