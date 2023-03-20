@@ -115,7 +115,7 @@ public class TestTetrisModel {
     assertFalse(model.moveTetromino(0, 5));
     
   }
-  //Gjør ferdig denne testen
+
   @Test
   public void testRotateTetrominoSuccess() {
       TetrisBoard board = new TetrisBoard(20, 10);
@@ -129,8 +129,6 @@ public class TestTetrisModel {
       for (GridCell<Character> gc : model.getFallingTile()) {
         tetroCells.add(gc);
       }
-
-
 
       assertEquals(4, tetroCells.size());
       assertTrue(tetroCells.contains(new GridCell<>(new CellPosition(0, 5), 'I')));

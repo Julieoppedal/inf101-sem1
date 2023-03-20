@@ -8,6 +8,11 @@ import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 import no.uib.inf101.tetris.view.ViewableTetrisModel;
 
+/**
+ * Represents the Tetris game model. This class implements both the ViewableTetrisModel
+ * and ControllableTetrisModel interfaces.
+ */
+
 public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel {
 
     private final TetrisBoard board;
@@ -15,27 +20,59 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     Tetromino fallingTile;
     private GameState state;
 
+    /**
+     * Constructs a new TetrisModel object with the given TetrisBoard and TetrominoFactory.
+     *
+     * @param board   The TetrisBoard object to use as the game board.
+     * @param factory The TetrominoFactory object to use for creating new Tetrominos.
+     */
+
     public TetrisModel(TetrisBoard board,TetrominoFactory factory) {
         this.board = board;
         this.factory = factory;
         this.fallingTile = factory.getNext().shiftedToTopCenterOf(board);
         this.state = GameState.ACTIVE_GAME;
     }
+    /**
+     * Returns the dimensions of the game board.
+     *
+     * @return A GridDimension object representing the dimensions of the game board.
+     */
 
     @Override
     public GridDimension getDimension() {
         return board;
     }
+    
+    /**
+     * Returns an Iterable of GridCells representing the tiles currently on the game board.
+     *
+     * @return An Iterable of GridCells representing the tiles currently on the game board.
+     */
 
     @Override
     public Iterable<GridCell<Character>> getTilesOnBoard() {
         return board;
     }
+    /**
+     * Returns the current falling Tetromino.
+     *
+     * @return The current falling Tetromino.
+     */
 
     @Override
     public Tetromino getFallingTile() {
         return fallingTile;
     }
+    /**
+     * Attempts to move the falling Tetromino by the given deltaRow and deltaCol values. If the
+     * new position is valid, the Tetromino is moved and true is returned. Otherwise, the Tetromino
+     * is not moved and false is returned.
+     *
+     * @param deltaRow The number of rows to move the Tetromino down (positive) or up (negative).
+     * @param deltaCol The number of columns to move the Tetromino right (positive) or left (negative).
+     * @return true if the Tetromino was moved successfully, false otherwise.
+     */
 
     @Override
     public boolean moveTetromino(int deltaRow, int deltaCol) {
@@ -56,7 +93,12 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
         return true;
     }
+/**
 
+Attempts to rotate the falling Tetromino. If the new rotation is valid, the Tetromino is
+rotated and true is returned. Otherwise, the Tetromino is not rotated and false is returned.
+@return true if the Tetromino was rotated successfully, false otherwise.
+*/
     @Override
     public boolean rotateTetromino() {
         Tetromino rotatedTetromino = this.fallingTile.rotate();
@@ -66,7 +108,12 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
         return false;
     }
+/**
 
+Drops the current falling Tetromino down to the lowest valid position on the game board and
+attaches it to the board. A new Tetromino is then spawned and set as the new falling Tetromino.
+@return true if the Tetromino was dropped and attached successfully, false otherwise.
+*/
     @Override
     public boolean dropTetromino() {
         Tetromino movedTetromino = this.fallingTile;
@@ -94,17 +141,30 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         }
         board.removeFullRows();
     }
+/**
 
+Returns the current state of the game.
+@return The current state of the game.
+*/
     @Override
     public GameState getGameState() {
         return this.state;
     }
+/**
 
+Returns the time in milliseconds between each clock tick.
+@return The time in milliseconds between each clock tick.
+*/
     @Override
     public int getTimeBetweenTicks() {
         return 1000;
     }
+/**
 
+Advances the game by one clock tick. If the falling Tetromino can be moved down one row, it is
+moved. Otherwise, the Tetromino is attached to the board and a new Tetromino is spawned and set
+as the new falling Tetromino.
+*/
     @Override
     public void clockTick() {
         if (moveTetromino(1, 0)) {
