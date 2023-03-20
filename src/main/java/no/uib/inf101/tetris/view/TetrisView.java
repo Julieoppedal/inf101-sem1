@@ -12,12 +12,23 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.awt.Font;
 
+/**
+
+The TetrisView class is responsible for rendering the current state of the game.
+
+It extends the JPanel class and implements the paintComponent method to draw the game on screen.
+*/
+
 public class TetrisView extends JPanel {
     private final ViewableTetrisModel model;
     private final ColorTheme color;
 
 
-    
+/**
+
+Constructs a new TetrisView object.
+@param model the ViewableTetrisModel to render
+*/
     public TetrisView(ViewableTetrisModel model) {
         this.model = model;
         this.color = new DefaultColorTheme();
@@ -25,6 +36,11 @@ public class TetrisView extends JPanel {
         this.setPreferredSize(new Dimension(300, 400));
         this.setBackground(color.getBackgroundColor());
     }
+/**
+
+Draws the game board, including the falling tile and the tiles already on the board.
+@param g2d the Graphics2D object to use for drawing
+*/
   
   // The paintComponent method is called by the Java Swing framework every time
   // either the window opens or resizes, or we call .repaint() on this object. 
@@ -58,7 +74,15 @@ public class TetrisView extends JPanel {
         }
 
     }
+/**
 
+Draws a collection of cells onto the graphics object using the provided cell position to pixel converter
+and color theme.
+@param g2d the Graphics2D object to use for drawing
+@param cells the cells to draw
+@param cptpc the cell position to pixel converter to use for translating cell positions to pixels
+@param ct the color theme to use for drawing the cells
+*/
     private static void drawCells(Graphics2D g2d, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cptpc, ColorTheme ct) {
         for (GridCell<Character> cell : cells) {
             Rectangle2D cellRect = cptpc.getBoundsForCell(cell.pos());
@@ -67,6 +91,12 @@ public class TetrisView extends JPanel {
             g2d.fill(cellRect);
         }
     }
+/**
+
+Overrides the paintComponent method of the JPanel class to draw the game on the screen using the
+drawGame method.
+@param g the Graphics object to use for drawing
+*/
 
     @Override
     public void paintComponent(Graphics g) {

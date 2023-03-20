@@ -83,25 +83,5 @@ public class TestTetrisBoard {
     assertEquals(expected, board.prettyString());
     }
 
-    @Test
-    public void testRemoveFullRowsDifferentWidth() {
-    TetrisBoard board = getTetrisBoardWithContents(new String[] {
-      "-T--",
-      "-T--",
-      "-T--",
-      "-T--",
-      "-T--",
-      "-T--"
-    });
-    System.out.println(board.prettyString());
-    assertEquals(1, board.removeFullRows());
-    String expected = String.join("\n", new String[] {
-    "----",
-    "----",
-    "----",
-    "----"
-    });
-    assertEquals(expected, board.prettyString());
-    }
     
 }

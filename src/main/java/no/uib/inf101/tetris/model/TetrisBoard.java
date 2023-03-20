@@ -4,12 +4,37 @@ import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.Grid;
 import no.uib.inf101.grid.GridCell;
 
+/**
+
+The TetrisBoard class represents the game board for the Tetris game. It extends the Grid class and is
+
+used to keep track of the current state of the game. The board is a grid of characters, where each
+
+character represents a block in the game.
+*/
+
 public class TetrisBoard extends Grid<Character> {
+
+/**
+
+Constructs a new TetrisBoard object with the specified number of rows and columns. The initial value
+for each cell in the board is '-'.
+@param rows the number of rows in the board
+@param cols the number of columns in the board
+*/
+
     public TetrisBoard(int rows, int cols) {
         super(rows, cols, '-');
 
     }
 
+
+/**
+
+Returns a string representation of the board. Each character in the string represents a block in the
+game, and the string is formatted to display the board in a readable way.
+@return a string representation of the board
+*/
     public String prettyString() {
         StringBuilder sb = new StringBuilder();
     
@@ -48,7 +73,11 @@ public class TetrisBoard extends Grid<Character> {
     }
 
 
+/**
 
+Removes all full rows from the board, and returns the number of rows that were removed.
+@return the number of full rows that were removed from the board
+*/
     public int removeFullRows() {
         int count = 0;
         int a = this.rows() - 1; 

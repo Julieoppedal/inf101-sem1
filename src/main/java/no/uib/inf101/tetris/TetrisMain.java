@@ -9,11 +9,26 @@ import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 import no.uib.inf101.tetris.view.TetrisView;
 
+/**
+
+The TetrisMain class is the main class for running the INF101 Tetris game. It creates the necessary
+objects and initializes the game window.
+*/
 
 public class TetrisMain {
+
+  /**
+
+The title of the main window.
+*/
   public static final String WINDOW_TITLE = "INF101 Tetris";
 
+/**
 
+The main method starts the game by creating a TetrisBoard, a TetrominoFactory, a TetrisModel, a TetrisView,
+and a TetrisController. It then creates a JFrame, sets its properties, and displays the TetrisView in it.
+@param args command line arguments (not used)
+*/
   
   public static void main(String[] args) {
 
