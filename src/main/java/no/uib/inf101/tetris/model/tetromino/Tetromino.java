@@ -21,7 +21,7 @@ and its position on the game grid.
 public class Tetromino implements Iterable<GridCell<Character>> {
     private final char symbol;
     private final boolean[][] shape;
-    CellPosition pos;
+    private final CellPosition pos;
 /**
 
 Constructs a new Tetromino with the given symbol, shape, and position.
@@ -119,7 +119,7 @@ Returns a new Tetromino that is shifted to the top center of the given grid dime
 @param dimension the dimension of the game grid
 @return a new Tetromino that is shifted to the top center of the given grid dimension
 */
-
+    
     public Tetromino shiftedToTopCenterOf(GridDimension dimension) {
         int middle = dimension.cols() / 2;
         int left = middle - (shape[0].length / 2);

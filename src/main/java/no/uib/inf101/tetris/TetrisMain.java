@@ -33,6 +33,7 @@ and a TetrisController. It then creates a JFrame, sets its properties, and displ
   public static void main(String[] args) {
 
     TetrisBoard board = new TetrisBoard(20,10);
+    
 
     TetrominoFactory factory = new RandomTetrominoFactory();
   

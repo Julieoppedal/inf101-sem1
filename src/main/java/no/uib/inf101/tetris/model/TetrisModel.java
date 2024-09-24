@@ -17,7 +17,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     private final TetrisBoard board;
     private final TetrominoFactory factory;
-    Tetromino fallingTile;
+    private Tetromino fallingTile;
     private GameState state;
 
     /**
@@ -84,7 +84,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return false;
     }
 
-    boolean isValidPosition(Tetromino shiftedTetromino) {
+    private boolean isValidPosition(Tetromino shiftedTetromino) {
         for(GridCell<Character> tile : shiftedTetromino) {
             CellPosition tilePosition = tile.pos();
             if(!(board.positionIsOnGrid(tilePosition)) || board.get(tilePosition) != '-') {
